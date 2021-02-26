@@ -1,4 +1,19 @@
 defmodule QITech.Middleware.Auth do
+  @moduledoc """
+  QITech authentication and encode/decode middleware
+
+  [Documentation](https://qitech.com.br/documentacao?file=221)
+
+  ## Example
+  ```
+  defmodule MyClient do
+    use Tesla
+    plug QITech.Middleware.Auth
+  end
+  ```
+  ## Options
+  """
+
   @behaviour Tesla.Middleware
 
   alias QITech.JWT.Token
@@ -18,7 +33,7 @@ defmodule QITech.Middleware.Auth do
     |> Tesla.put_headers(create_header(env, Token.md5(encoded_body)))
   end
 
-  defp prepare_request(_ = env) do
+  defp prepare_request(env) do
     env
     |> Tesla.put_headers(create_header(env))
   end

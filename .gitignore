@@ -22,6 +22,9 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 qitech_ex-*.tar
 
-
 # Temporary files for e.g. tests
 /tmp
+
+# Dialyxir
+/priv/plts/*.plt
+/priv/plts/*.plt.hash

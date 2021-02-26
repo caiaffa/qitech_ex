@@ -1,13 +1,24 @@
 defmodule QitechEx.MixProject do
   use Mix.Project
 
+  @version "0.1.0"
+
   def project do
     [
-      app: :qitech_ex,
-      version: "0.1.0",
+      app: :qitech,
+      version: @version,
+      description: description(),
+      package: package(),
       elixir: "~> 1.11",
+      elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      name: "QITech",
+      source_url: "https://github.com/caiaffa/qitech_ex",
+      dialyzer: [
+        plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
+      ],
+      docs: docs()
     ]
   end
 
@@ -24,7 +35,39 @@ defmodule QitechEx.MixProject do
       {:tesla, "~> 1.4.0"},
       {:joken, "~> 2.3"},
       {:jason, "~> 1.1"},
-      {:timex, "~> 3.6"}
+      {:hackney, "~> 1.17"},
+      {:timex, "~> 3.6"},
+
+      # testing & docs
+      {:ex_doc, "~> 0.23", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.1", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false}
+    ]
+  end
+
+  defp description() do
+    "Elixir wrapper for QITech API."
+  end
+
+  defp package do
+    [
+      files: ["lib", "mix.exs", "README.md", "LICENSE*"],
+      maintainers: ["Luís Felipe Caiaffa"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/caiaffa/qitech_ex"}
+    ]
+  end
+
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
+
+  defp docs do
+    [
+      main: "readme",
+      source_ref: "v#{@version}",
+      extras: ["README.md", "LICENSE"],
+      source_ref: "v#{@version}",
+      source_url: "https://github.com/caiaffa/qitech_ex"
     ]
   end
 end
