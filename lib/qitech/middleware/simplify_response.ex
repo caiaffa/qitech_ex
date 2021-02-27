@@ -1,22 +1,6 @@
 defmodule QITech.Middleware.SimplifyResponse do
-  @moduledoc """
-  Simplify Tesla Response middleware
+  @moduledoc false
 
-  ## Example
-  ```
-  defmodule MyClient do
-    use Tesla
-    plug QITech.Middleware.SimplifyResponse
-  end
-  ```
-
-  Possible returns:
-  - {:ok, %{body: body, status: status}}
-  - {:error, {body: %{}, status: 500}
-  - {:error, :timeout}
-
-  ## Options
-  """
   @behaviour Tesla.Middleware
 
   def call(env, next, simplify) do

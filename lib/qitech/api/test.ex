@@ -1,21 +1,22 @@
-defmodule QITech.API.Ping do
+defmodule QITech.API.Test do
   @moduledoc """
-  Provides ping API interfaces.
+  Provides test API interfaces.
 
-  [Documentation](https://qitech.com.br/documentacao?file=447)
+  You can:
+  - Test if rest api is working fine or not
+
+  [QI Tech API reference](https://qitech.com.br/documentacao?file=221)
   """
   alias QITech.API.Base
 
   @test_path "/test"
 
   @doc """
-  Test  Api.
-
-  You can see more in documentation
+  Test API.
 
   ## Examples
 
-      iex> QITech.API.Ping.ping()
+      iex> QITech.API.Test.ping()
       {:ok, %{body: %{"ping" => "pong", "success" => "Congrats!"}, status: 201}}
   """
   def ping do

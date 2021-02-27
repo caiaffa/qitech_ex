@@ -46,7 +46,7 @@ defmodule QitechEx.MixProject do
   end
 
   defp description() do
-    "Elixir wrapper for QITech API."
+    "Elixir wrapper for QI Tech API."
   end
 
   defp package do
@@ -67,7 +67,16 @@ defmodule QitechEx.MixProject do
       source_ref: "v#{@version}",
       extras: ["README.md", "LICENSE"],
       source_ref: "v#{@version}",
-      source_url: "https://github.com/caiaffa/qitech_ex"
+      source_url: "https://github.com/caiaffa/qitech_ex",
+      groups_for_modules: [
+        Api: [
+          QITech.API.Debt,
+          QITech.API.Test
+        ],
+        JWT: [
+          QITech.JWT.Token
+        ]
+      ]
     ]
   end
 end

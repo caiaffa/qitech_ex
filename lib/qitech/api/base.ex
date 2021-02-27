@@ -1,7 +1,5 @@
 defmodule QITech.API.Base do
-  @moduledoc """
-  This module is responsable for determinate Client HTTP
-  """
+  @moduledoc false
   use Tesla
 
   plug(Tesla.Middleware.BaseUrl, QITech.base_url())

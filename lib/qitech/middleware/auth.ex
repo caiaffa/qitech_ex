@@ -1,18 +1,5 @@
 defmodule QITech.Middleware.Auth do
-  @moduledoc """
-  QITech authentication and encode/decode middleware
-
-  [Documentation](https://qitech.com.br/documentacao?file=221)
-
-  ## Example
-  ```
-  defmodule MyClient do
-    use Tesla
-    plug QITech.Middleware.Auth
-  end
-  ```
-  ## Options
-  """
+  @moduledoc false
 
   @behaviour Tesla.Middleware
 

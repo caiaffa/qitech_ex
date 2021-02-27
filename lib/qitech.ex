@@ -1,7 +1,5 @@
 defmodule QITech do
-  @moduledoc """
-  Documentation for `QITech`.
-  """
+  @moduledoc false
 
   @base_url "https://api-auth.qitech.app"
   @base_url_sandbox "https://api-auth.sandbox.qitech.app"
