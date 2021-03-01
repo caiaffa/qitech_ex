@@ -79,7 +79,7 @@ defmodule QitechEx.MixProject do
       groups_for_modules: [
         Api: [
           QITech.API.Debt,
-          QITech.API.Test
+          QITech.API.Health
         ],
         JWT: [
           QITech.JWT.Token
