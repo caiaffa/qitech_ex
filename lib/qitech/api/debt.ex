@@ -27,7 +27,7 @@ defmodule QITech.API.Debt do
         [status: "opened", issuer_document_number: "31658725833", issuer_name: "Name Example", profile_document_number: "31658725833", page: 1, page_size: 100]
       )
   """
-  def get(query_params \\ nil) do
+  def get(query_params \\ []) do
     @debt_path |> Base.encode_url_query_params(query_params) |> Base.get()
   end
 
@@ -65,7 +65,7 @@ defmodule QITech.API.Debt do
         [status: "opened", issuer_document_number: "31658725833", issuer_name: "Name Example", profile_document_number: "31658725833", page: 1, page_size: 100]
       )
   """
-  def get_signed(query_params \\ nil) do
+  def get_signed(query_params \\ []) do
     @signed_debt_path |> Base.encode_url_query_params(query_params) |> Base.get()
   end
 

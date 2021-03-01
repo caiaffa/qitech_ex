@@ -9,7 +9,7 @@ defmodule QITech.JWT.Token do
   def token_config, do: %{}
 
   @doc """
-  Encode a signed payload token
+  Encode a signed data token
 
   ## Examples
 
@@ -20,15 +20,15 @@ defmodule QITech.JWT.Token do
       {:error, "invalid argument type"}
 
   """
-  def encode(payload) when is_map(payload) do
-    payload
+  def encode(data) when is_map(data) do
+    data
     |> __MODULE__.generate_and_sign(Signer.create(@algorithm, %{"pem" => QITech.private_key()}))
   end
 
-  def encode(_payload), do: {:error, "invalid argument type"}
+  def encode(_data), do: {:error, "invalid argument type"}
 
   @doc """
-  Decode a signed payload token
+  Decode a signed data token
 
   ## Examples
 
@@ -49,37 +49,54 @@ defmodule QITech.JWT.Token do
 
   def decode(_token), do: {:error, "invalid argument type"}
 
-  @doc """
-  QI Tech API Headers
-  """
-  def headers(authorization) do
-    api_client_key = QITech.api_client_key()
-
+  defp headers(api_client_key, authorization) do
     [
       {"api-client-key", api_client_key},
       {"authorization", "QIT #{api_client_key}:#{authorization}"}
     ]
   end
 
-  @doc """
-  HASH MD5
-  """
-  def md5(content), do: Base.encode16(:erlang.md5(content), case: :lower)
+  defp md5(content), do: Base.encode16(:erlang.md5(content), case: :lower)
 
-  @doc """
-  QI Tech Signature Json
-  """
-  def signature_json(signature),
-    do: %{"sub" => QITech.api_client_key(), "signature" => signature}
+  defp signature_json(signature, sub),
+    do: %{"sub" => sub, "signature" => signature}
 
-  @doc """
-  QI Tech String To Sign
-  """
-  def string_to_sign(http_verb, content_md5, content_type, date, relative_url)
-      when is_nil(content_md5) do
+  defp string_to_sign(http_verb, content_md5, content_type, date, relative_url)
+       when is_nil(content_md5) do
     "#{http_verb}\n\n#{content_type}\n#{date}\n#{relative_url}"
   end
 
-  def string_to_sign(http_verb, content_md5, content_type, date, relative_url),
+  defp string_to_sign(http_verb, content_md5, content_type, date, relative_url),
     do: "#{http_verb}\n#{content_md5}\n#{content_type}\n#{date}\n#{relative_url}"
+
+  @doc """
+  Creates encoded and MD5 hash body
+  """
+  def encode_body_and_hash(paylaod) when is_map(paylaod) do
+    {:ok, encoded_body, _} = encode(paylaod)
+    content_md5 = md5(encoded_body)
+    {:ok, encoded_body, content_md5}
+  end
+
+  def encode_body_and_hash(_paylaod), do: {:error, "invalid argument type"}
+
+  @doc """
+  Creates and signs the header
+  """
+  def create_header(opts) do
+    http_verb = opts[:http_verb] |> to_string() |> String.upcase()
+    date = Timex.now() |> Timex.format!("%a, %d %b %Y %H:%M:%S GMT", :strftime)
+    relative_url = URI.parse(opts[:url]) |> relative_url()
+
+    {:ok, authorization, _} =
+      string_to_sign(http_verb, opts[:content_md5], opts[:content_type], date, relative_url)
+      |> signature_json(QITech.api_client_key())
+      |> encode()
+
+    QITech.api_client_key()
+    |> headers(authorization)
+  end
+
+  defp relative_url(%URI{path: path, query: query}) when is_nil(query), do: path
+  defp relative_url(%URI{path: path, query: query}), do: "#{path}?#{query}"
 end

@@ -1,9 +1,9 @@
-defmodule QITech.API.Test do
+defmodule QITech.API.Health do
   @moduledoc """
-  Provides test API interfaces.
+  Provides Health API interfaces.
 
   You can:
-  - Test if rest api is working fine or not
+  - Check rest api is working fine or not
 
   [QI Tech API reference](https://qitech.com.br/documentacao?file=221)
   """
@@ -12,11 +12,11 @@ defmodule QITech.API.Test do
   @test_path "/test"
 
   @doc """
-  Test API.
+  Health API.
 
   ## Examples
 
-      iex> QITech.API.Test.ping()
+      iex> QITech.API.Health.ping()
       {:ok, %{body: %{"ping" => "pong", "success" => "Congrats!"}, status: 201}}
   """
   def ping do
