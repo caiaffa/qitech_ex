@@ -11,7 +11,7 @@ defmodule QITech do
   def public_key, do: Application.get_env(:qitech, :public_key)
 
   def base_url do
-    case Application.get_env(:qitech, :sandbox) || true do
+    case Application.get_env(:qitech, :sandbox, true) do
       true -> @base_url_sandbox
       false -> @base_url
     end

@@ -9,7 +9,7 @@ Add `qitech_ex` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:qitech_ex, "~> 0.2.0"}
+    {:qitech_ex, "~> 0.2.1"}
   ]
 end
 ```
@@ -21,7 +21,7 @@ The default behaviour is to configure using the application environment:
 ```elixir
 # config/config.exs
 
-config :qitech_ex,
+config :qitech,
   sandbox: true, # for production environment put false
   simplify_response: true, 
   api_client_key: "QI Tech API Client Key",
