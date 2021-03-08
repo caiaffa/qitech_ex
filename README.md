@@ -4,12 +4,12 @@ Elixir wrapper for [QI Tech](https://www.qitech.com.br/documentacao?file=111) AP
 
 ## Installation
 
-Add `qitech_ex` to your list of dependencies in `mix.exs`:
+Add `qitech` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:qitech_ex, "~> 0.2.1"}
+    {:qitech, "~> 0.2.2"}
   ]
 end
 ```
