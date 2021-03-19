@@ -21,6 +21,8 @@ defmodule QITech do
 
   def client_adapter_opts, do: Application.get_env(:qitech, :client_adapter_opts)
 
+  defp to_bool(value) when is_boolean(value), do: value
+
   defp to_bool(value) do
     case String.downcase(value) do
       "true" -> true
