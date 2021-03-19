@@ -9,7 +9,7 @@ Add `qitech` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:qitech, "~> 0.2.3"}
+    {:qitech, "~> 0.2.4"}
   ]
 end
 ```
