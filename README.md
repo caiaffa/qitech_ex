@@ -9,7 +9,7 @@ Add `qitech` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:qitech, "~> 0.2.2"}
+    {:qitech, "~> 0.2.3"}
   ]
 end
 ```
@@ -23,7 +23,7 @@ The default behaviour is to configure using the application environment:
 
 config :qitech,
   sandbox: true, # for production environment put false
-  simplify_response: true, 
+  simplify_response: true, # default true
   api_client_key: "QI Tech API Client Key",
   client_adapter_opts: [adapter: [recv_timeout: 10_000]], # For more detail see Tesla Adapter
   public_key: " -----BEGIN PUBLIC KEY-----",
