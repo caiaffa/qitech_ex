@@ -9,7 +9,7 @@ Add `qitech` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:qitech, "~> 0.2.5"}
+    {:qitech, "~> 0.2.6"}
   ]
 end
 ```
@@ -571,6 +571,101 @@ QITech.API.BankSlip.get("d4935335-5263-430a-868d-505a7ce9d8f0")
      ],
      "guarantor_document" => nil,
      "bank_slip_file" => [],
+     "interest_daily_value" => 0.12,
+     "has_protest_pending_feedback" => false,
+     "payer_postal_code" => "00000000",
+     "notary_office_number" => nil,
+     "settlement_account_key" => "xxxx",
+     "digitable_line" => "00000",
+     "requester_profile_code" => "xxxx",
+     "bank_teller_instructions" => "",
+     "asset_type" => %{
+       "created_at" => "2019-03-12T12:59:31",
+       "enumerator" => "invoice",
+       "translation_path" => "bank_slip.AssetType.invoice"
+     },
+     "payer_person_type" => %{
+       "created_at" => "2019-03-12T12:59:31",
+       "enumerator" => "natural",
+       "translation_path" => "bank_slip.PersonType.natural"
+     },
+     "protocol_region" => nil,
+     "paid_fine_amount" => nil,
+     "beneficiary_account_branch" => "0001",
+     "discounts" => [],
+     "printing_policy" => %{
+       "created_at" => "2019-03-12T12:59:31",
+       "enumerator" => "no_printing",
+       "translation_path" => "bank_slip.PrintingPolicy.no_printing"
+     },
+     "business_date_expiration" => "2022-01-17",
+     "protest_status" => %{
+       "created_at" => "2019-03-12T12:59:31",
+       "enumerator" => "not_protested",
+       "translation_path" => "bank_slip.ProtestStatus.not_protested"
+     },
+     "created_at" => "2021-08-12T22:33:27",
+     "payer_branch_number" => nil,
+     "beneficiary_name" => "XXX XXX XXX XXX",
+     "lock_origin_type" => nil,
+     "settlements" => [],
+     "bank_slip_key" => "xxxxx",
+     "protocol_date" => nil,
+     "days_to_protest" => nil,
+     "requester_profile" => 9,
+     "paid_amount" => nil,
+     "fine_percentage" => 2.0,
+     "notary_office_protocol" => nil,
+     "days_before_fine" => nil,
+     "beneficiary_account_key" => "xxxxx",
+     "original_expiration" => "2022-01-15",
+     "tags" => "credit-operation",
+     "automatic_bankruptcy_protest" => false,
+     "billing_account_key" => "xxxxxx",
+     "expenses" => [%{...}, ...],
+     "document_number" => "8",
+   },
+   status: 200
+ }}
+```
+
+Retrieve a copy of the bank slip
+
+```elixir
+QITech.API.BankSlip.copy("d4935335-5263-430a-868d-505a7ce9d8f0")
+
+# Response
+{:ok,
+ %{
+   body: %{
+     "days_to_bankruptcy_protest" => 0,
+     "beneficiary_document_number" => "xxxx",
+     "days_before_interest" => nil,
+     "nfe_key" => nil,
+     "automatic_protest" => false,
+     "days_to_write_off" => nil,
+     "expiration" => "2022-01-15",
+     "notification" => [
+       %{
+         "document_number" => "xxxx",
+         "email" => "xxxx",
+         "name" => "xxxx",
+         "phone" => nil,
+         "send_2_way" => false,
+         "send_after_due_date" => 1,
+         "send_before_due_date" => true,
+         "send_on_protest" => false
+       }
+     ],
+     "guarantor_document" => nil,
+     "bank_slip_file" => [
+       %{
+         "barcode" => "0000000000000000000000000000000000000000000000",
+         "created_at" => "2021-12-20T16:41:18",
+         "digitable_line" => "0000000000000000000000000000000000000000000000",
+         "url" => "https://linkparadownload.com/arquivo.pdf"
+       }
+     ],
      "interest_daily_value" => 0.12,
      "has_protest_pending_feedback" => false,
      "payer_postal_code" => "00000000",

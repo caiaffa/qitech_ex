@@ -22,4 +22,15 @@ defmodule QITech.API.BankSlip do
   def get(bank_slip_key) do
     "#{@bank_slip_path}/#{bank_slip_key}" |> Base.get()
   end
+
+  @doc """
+  Retrieve a copy of the bank slip
+
+  ## Examples
+
+      iex> QITech.API.BankSlip.post("cddd68af-a7e4-4abc-84f2-04ab27b1d9b1", %{})
+  """
+  def copy(bank_slip_key, body \\ %{}) do
+    "#{@bank_slip_path}/2-way/#{bank_slip_key}" |> Base.post(body)
+  end
 end
